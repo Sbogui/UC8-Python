@@ -4,10 +4,27 @@ from tkinter import ttk
 
 
 def conferir_cadastro():
-    # TODO: obter os textos com get().
-    # TODO: adaptar a validação que você praticou no terminal.
-    # TODO: mostrar o resultado no rótulo; não prometer gravação permanente.
-    resultado.configure(text="Implemente e teste seu callback.")
+    nome = entrada_nome.get()
+    idade_texto = entrada_idade.get()
+
+    nome_limpo = nome.strip()
+    if not nome_limpo:
+        resultado.configure(text="O nome não pode ficar vazio!")
+        return
+
+    try:
+        idade_numero = int(idade_texto)
+    except ValueError:
+        resultado.configure(text="Coloque a idade como número inteiro!")
+        return
+
+    if idade_numero <= 0:
+        resultado.configure(text="A idade tem que ser maior que 0!")
+        return
+
+    resultado.configure(
+        text=f"Conferencia do cadastro.\nNome: {nome_limpo}\nIdade: {idade_numero} anos"
+    )
 
 
 janela = tk.Tk()
