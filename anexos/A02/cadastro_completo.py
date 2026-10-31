@@ -4,21 +4,48 @@ from tkinter import ttk
 
 
 def registrar(campos, registro):
-    # TODO: ler e normalizar nome e sobrenome; recusar texto vazio.
-    # TODO: converter idade e validar inteiro maior que zero.
-    # TODO: atualizar registro somente depois de todas as validações.
-    return "Complete a função registrar."
+    nome = campos["nome"].strip()
+    sobrenome = campos["sobrenome"].strip()
+    idade_texto = campos["idade"].strip()
+
+    if not nome:
+        return "Preencha o nome."
+
+    if not sobrenome:
+        return "Preencha o sobrenome."
+
+    try:
+        idade = int(idade_texto)
+    except ValueError:
+        return "Coloque a idade como número inteiro!"
+
+    if idade <= 0:
+        return "A idade tem que ser maior que 0!"
+
+    registro["nome"] = nome
+    registro["sobrenome"] = sobrenome
+    registro["idade"] = idade
+
+    return (
+        f"Cadastro registrado. Nome: {nome} {sobrenome} "
+        f"| Idade: {idade} anos"
+    )
 
 
 def exibir(registro):
-    # TODO: tratar a ausência de registro e consultar o último válido.
-    return "Complete a função exibir."
+    if not registro:
+        return "Nenhum registro confirmado."
+
+    return (
+        f"Nome: {registro['nome']} {registro['sobrenome']} "
+        f"| Idade: {registro['idade']} anos"
+    )
 
 
 def limpar(campos):
-    # TODO: esvaziar os três textos editáveis.
-    # O registro confirmado é separado e não é recebido por esta função.
-    pass
+    campos["nome"] = ""
+    campos["sobrenome"] = ""
+    campos["idade"] = ""
 
 
 def criar_janela():
@@ -38,18 +65,30 @@ def criar_janela():
     entrada_idade = ttk.Entry(janela)
     entrada_idade.grid(row=2, column=1, padx=12, pady=6, sticky="ew")
 
+    
     def ao_registrar():
-        # TODO: copiar os textos atuais para campos e chamar registrar.
-        # TODO: atualizar a mensagem e a consulta ao registro confirmado.
-        aviso.configure(text="Complete o callback Registrar.")
+        campos["nome"] = entrada_nome.get()
+        campos["sobrenome"] = entrada_sobrenome.get()
+        campos["idade"] = entrada_idade.get()
+
+        mensagem = registrar(campos, registro)
+        aviso.configure(text=mensagem)
+
+        if registro and mensagem.startswith("Cadastro registrado."):
+            resultado.configure(text=exibir(registro))
 
     def ao_exibir():
-        # TODO: consultar apenas registro; não ler os campos em edição.
-        aviso.configure(text="Complete o callback Exibir.")
+        resultado.configure(text=exibir(registro))
 
     def ao_limpar():
-        # TODO: limpar campos e Entry; manter registro e consulta intactos.
-        aviso.configure(text="Complete o callback Limpar campos.")
+        limpar(campos)
+
+        entrada_nome.delete(0, tk.END)
+        entrada_sobrenome.delete(0, tk.END)
+        entrada_idade.delete(0, tk.END)
+
+        aviso.configure(text="Campos limpos. O registro confirmado foi preservado.")
+
 
     ttk.Button(janela, text="Registrar", command=ao_registrar).grid(row=3, column=0, padx=12, pady=8)
     ttk.Button(janela, text="Exibir", command=ao_exibir).grid(row=3, column=1, padx=12, pady=8)

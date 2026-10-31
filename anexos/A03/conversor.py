@@ -5,21 +5,58 @@ from tkinter import ttk
 
 def calcular(campos, registro):
     # TODO: ler reais e as duas cotações; aceitar vírgula ou ponto decimal.
+    texto_reais = campos.get("reais", "").strip().replace(",", ".")
+    texto_dolar = campos.get("cotacao_dolar", "").strip().replace(",", ".")
+    texto_euro = campos.get("cotacao_euro", "").strip().replace(",", ".")
+    
     # TODO: tratar conversão inválida, reais negativos e cotações <= 0.
+    try:
+        reais = float(texto_reais)
+        cotacao_dolar = float(texto_dolar)
+        cotacao_euro = float(texto_euro)
+    except ValueError:
+        return "Informe números válidos para reais e para as duas cotações."
+    
+    if reais < 0:
+        return "O valor em reais não pode ser negativo."
+    if cotacao_dolar <= 0 or cotacao_euro <= 0:
+        return "As cotações devem ser maiores que zero."
+    
     # TODO: dividir reais por cada cotação.
+    dolares = reais / cotacao_dolar
+    euros = reais / cotacao_euro
+    
     # TODO: confirmar entradas e os dois resultados somente após validar tudo.
-    return "Complete a função calcular."
+    registro.update({
+        "reais": reais,
+        "cotacao_dolar": cotacao_dolar,
+        "cotacao_euro": cotacao_euro,
+        "dolares": dolares,
+        "euros": euros,
+    })
+    return "Conversão confirmada."
+
 
 
 def exibir(registro):
     # TODO: tratar ausência de conversão; consultar somente registro.
+    if not registro:
+        return "Nenhuma conversão confirmada nesta sessão."
+    
     # TODO: mostrar entradas usadas e resultados, estes com duas casas.
-    return "Complete a função exibir."
+    return (
+        f"Última conversão confirmada: R$ {registro['reais']} com "
+        f"R$ {registro['cotacao_dolar']} por USD e R$ {registro['cotacao_euro']} por EUR: "
+        f"{registro['dolares']:.2f} USD e {registro['euros']:.2f} EUR."
+    )
+
 
 
 def limpar(campos):
-    # TODO: esvaziar os três campos; preservar registro e resultados.
-    pass
+    campos["reais"] = ""
+    campos["cotacao_dolar"] = ""
+    campos["cotacao_euro"] = ""
+
 
 
 def criar_janela():
@@ -42,15 +79,24 @@ def criar_janela():
 
     def ao_calcular():
         # TODO: ler os três Entry, calcular e atualizar aviso/último confirmado.
-        aviso.configure(text="Complete o callback Calcular.")
+        campos["reais"] = entrada_reais.get()
+        campos["cotacao_dolar"] = entrada_dolar.get()
+        campos["cotacao_euro"] = entrada_euro.get()
+        aviso.configure(text=calcular(campos, registro))
+        
+        resultado.configure(text=exibir(registro))
 
     def ao_exibir():
-        # TODO: consultar somente registro, sem ler as entradas editáveis.
-        aviso.configure(text="Complete o callback Exibir.")
+        resultado.configure(text=exibir(registro))
+        aviso.configure(text="Consulta ao último conjunto confirmado.")
 
     def ao_limpar():
-        # TODO: esvaziar campos/Entry e devolver foco; conservar resultado.
-        aviso.configure(text="Complete o callback Limpar campos.")
+        limpar(campos)
+        entrada_reais.delete(0, tk.END)
+        entrada_dolar.delete(0, tk.END)
+        entrada_euro.delete(0, tk.END)
+        entrada_reais.focus_set()
+        aviso.configure(text="Campos limpos. O último conjunto confirmado foi mantido.")
 
     ttk.Button(janela, text="Calcular", command=ao_calcular).grid(row=4, column=0, padx=12, pady=8)
     ttk.Button(janela, text="Exibir", command=ao_exibir).grid(row=4, column=1, padx=12, pady=8)

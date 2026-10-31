@@ -5,23 +5,57 @@ from tkinter import ttk
 
 def calcular(campos, registro):
     # TODO: normalizar nome/turma e recusar texto vazio.
+    nome = campos.get("nome", "").strip()
+    turma = campos.get("turma", "").strip()
+    if nome == "":
+        return "Informe o nome."
+    if turma == "":
+        return "Informe a turma."
+    
     # TODO: conferir a presença de exatamente cinco notas.
+    textos = campos.get("notas", [])
+    if len(textos) != 5:
+        return "Informe exatamente cinco notas."
+    
     # TODO: converter cada texto, validar de 0 a 10 e criar uma nova lista.
+    notas = []
+    for posicao, texto in enumerate(textos, start=1):
+        try:
+            nota = float(texto.strip().replace(",", "."))
+        except ValueError:
+            return f"Nota {posicao}: informe um número."
+        if not (0 <= nota <= 10):  
+            return f"Nota {posicao}: use um valor de 0 a 10."
+        notas.append(nota)
+    
     # TODO: calcular a média com sum e len.
+    media = sum(notas) / len(notas)
+    
     # TODO: confirmar nome, turma, notas e média somente após validar tudo.
-    return "Complete a função calcular."
+    registro.update({"nome": nome, "turma": turma, "notas": notas, "media": media})
+    return "Registro confirmado."
 
 
 def exibir(registro):
     # TODO: tratar ausência; consultar apenas o último registro confirmado.
+    if not registro:
+        return "Nenhum registro escolar confirmado nesta sessão."
+    
     # TODO: mostrar identificação e cinco notas usadas, com média em uma casa.
-    return "Complete a função exibir."
+    textos_notas = []
+    for nota in registro["notas"]:
+        textos_notas.append(str(nota))
+    return (
+        f"Aluno: {registro['nome']} | Turma: {registro['turma']} | "
+        f"Notas: {', '.join(textos_notas)} | Média: {registro['media']:.1f}"
+    )
 
 
 def limpar(campos):
     # TODO: esvaziar nome, turma e os cinco textos de notas.
-    # O registro confirmado não é recebido por esta função.
-    pass
+    campos["nome"] = ""
+    campos["turma"] = ""
+    campos["notas"] = ["", "", "", "", ""]
 
 
 def criar_janela():
@@ -47,17 +81,33 @@ def criar_janela():
 
     def ao_calcular():
         # TODO: ler identificação e reunir os cinco textos de Entry numa lista.
+        campos["nome"] = entrada_nome.get()
+        campos["turma"] = entrada_turma.get()
+        textos = []
+        for entrada in entradas_notas:
+            textos.append(entrada.get())
+        campos["notas"] = textos
+        aviso.configure(text=calcular(campos, registro))
+        
         # TODO: chamar calcular e atualizar mensagem/consulta ao último válido.
-        aviso.configure(text="Complete o callback Calcular média.")
+        resultado.configure(text=exibir(registro))
 
     def ao_exibir():
         # TODO: consultar somente registro; não ler os Entry em edição.
-        aviso.configure(text="Complete o callback Exibir.")
+        resultado.configure(text=exibir(registro))
+        aviso.configure(text="Consulta ao último registro confirmado.")
 
     def ao_limpar():
         # TODO: limpar campos e os sete Entry; devolver foco ao nome.
+        limpar(campos)
+        entrada_nome.delete(0, tk.END)
+        entrada_turma.delete(0, tk.END)
+        for entrada in entradas_notas:
+            entrada.delete(0, tk.END)
+        entrada_nome.focus_set()
+        
         # TODO: preservar registro e painel do último válido.
-        aviso.configure(text="Complete o callback Limpar campos.")
+        aviso.configure(text="Campos limpos. O último registro confirmado foi mantido.")
 
     ttk.Button(janela, text="Calcular média", command=ao_calcular).grid(row=8, column=0, padx=12, pady=6)
     ttk.Button(janela, text="Exibir", command=ao_exibir).grid(row=8, column=1, padx=12, pady=6)
