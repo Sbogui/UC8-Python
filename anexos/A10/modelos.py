@@ -1,66 +1,105 @@
 # A10: assinaturas de apoio; traga sua implementação anterior.
+TAMANHOS = ("Média", "Grande")
+
+
 def quantidade(texto):
-    """TODO A10: implemente quantidade conforme o contrato e reutilize seu código anterior."""
-    raise NotImplementedError('Implemente e teste esta operação.')
+    limpo = texto.strip()
+    if not (limpo.isascii() and limpo.isdigit()):
+        raise ValueError("Quantidade: informe um número inteiro de 1 a 999.")
+    valor = int(limpo)
+    if valor < 1 or valor > 999:
+        raise ValueError("Quantidade: use um valor de 1 a 999.")
+    return valor
+
 
 def formatar(centavos):
-    """TODO A10: implemente formatar conforme o contrato e reutilize seu código anterior."""
-    raise NotImplementedError('Implemente e teste esta operação.')
+    reais, resto = divmod(centavos, 100)
+    milhares = f"{reais:,}".replace(",", ".")
+    return f"R$ {milhares},{resto:02d}"
+
 
 class Produto:
-
     def __init__(self, codigo, nome, preco_centavos):
-        """TODO A10: implemente __init__ conforme o contrato e reutilize seu código anterior."""
-        raise NotImplementedError('Implemente e teste esta operação.')
+        if not codigo.strip():
+            raise ValueError("Produto: informe o código.")
+        if not nome.strip():
+            raise ValueError("Produto: informe o nome.")
+        if preco_centavos <= 0:
+            raise ValueError("Produto: o preço deve ser maior que zero.")
+        self.codigo = codigo
+        self.nome = nome
+        self.preco_centavos = preco_centavos
+
+
+class Pizza:
+    def __init__(self, codigo, nome, tamanho, preco_centavos):
+        if tamanho not in TAMANHOS:
+            raise ValueError("Pizza: o tamanho deve ser Média ou Grande.")
+        self.produto = Produto(codigo, nome, preco_centavos)
+        self.tamanho = tamanho
+        self.codigo = self.produto.codigo
+        self.nome = self.produto.nome
+        self.preco_centavos = self.produto.preco_centavos
+
+
+class Bebida:
+    def __init__(self, codigo, nome, preco_centavos):
+        self.produto = Produto(codigo, nome, preco_centavos)
+        self.codigo = self.produto.codigo
+        self.nome = self.produto.nome
+        self.preco_centavos = self.produto.preco_centavos
+
 
 class Item:
 
     def __init__(self, produto, texto_quantidade):
-        """TODO A10: implemente __init__ conforme o contrato e reutilize seu código anterior."""
-        raise NotImplementedError('Implemente e teste esta operação.')
+        self.quantidade = quantidade(texto_quantidade)
+        self.produto = produto
 
     def subtotal(self):
-        """TODO A10: implemente subtotal conforme o contrato e reutilize seu código anterior."""
-        raise NotImplementedError('Implemente e teste esta operação.')
+        return self.quantidade * self.produto.preco_centavos
+
 
 class Pedido:
 
     def __init__(self):
-        """TODO A10: implemente __init__ conforme o contrato e reutilize seu código anterior."""
-        raise NotImplementedError('Implemente e teste esta operação.')
+        self.itens = {}
+        self.aberto = True
 
     def exigir_aberto(self):
-        """TODO A10: implemente exigir_aberto conforme o contrato e reutilize seu código anterior."""
-        raise NotImplementedError('Implemente e teste esta operação.')
+        if not self.aberto:
+            raise ValueError("Pedido fechado: inicie um novo pedido.")
 
     def adicionar(self, produto, texto_quantidade):
-        """TODO A10: implemente adicionar conforme o contrato e reutilize seu código anterior."""
-        raise NotImplementedError('Implemente e teste esta operação.')
+        self.exigir_aberto()
+        if produto is None:
+            raise ValueError("Selecione um produto antes de adicionar.")
+        if produto.codigo in self.itens:
+            existente = self.itens[produto.codigo]
+            nova = quantidade(texto_quantidade)
+            if existente.quantidade + nova > 999:
+                raise ValueError("Quantidade acumulada: o máximo por produto é 999.")
+            existente.quantidade += nova
+        else:
+            self.itens[produto.codigo] = Item(produto, texto_quantidade)
 
     def total_centavos(self):
-        """TODO A10: implemente total_centavos conforme o contrato e reutilize seu código anterior."""
-        raise NotImplementedError('Implemente e teste esta operação.')
+        return sum(item.subtotal() for item in self.itens.values())
 
     def linhas(self):
-        """TODO A10: implemente linhas conforme o contrato e reutilize seu código anterior."""
-        raise NotImplementedError('Implemente e teste esta operação.')
+        return [
+            (i.produto.codigo, i.produto.nome, i.quantidade, i.subtotal())
+            for i in self.itens.values()
+        ]
 
     def atualizar(self, codigo, texto_quantidade):
-        """TODO A10: implemente atualizar conforme o contrato e reutilize seu código anterior."""
-        raise NotImplementedError('Implemente e teste esta operação.')
+        self.exigir_aberto()
+        if codigo not in self.itens:
+            raise ValueError("Item não encontrado no pedido.")
+        self.itens[codigo].quantidade = quantidade(texto_quantidade)
 
     def remover(self, codigo):
-        """TODO A10: implemente remover conforme o contrato e reutilize seu código anterior."""
-        raise NotImplementedError('Implemente e teste esta operação.')
-
-class Pizza:
-
-    def __init__(self, codigo, nome, tamanho, preco_centavos):
-        """TODO A10: implemente __init__ conforme o contrato e reutilize seu código anterior."""
-        raise NotImplementedError('Implemente e teste esta operação.')
-
-class Bebida:
-
-    def __init__(self, codigo, nome, preco_centavos):
-        """TODO A10: implemente __init__ conforme o contrato e reutilize seu código anterior."""
-        raise NotImplementedError('Implemente e teste esta operação.')
+        self.exigir_aberto()
+        if codigo not in self.itens:
+            raise ValueError("Item não encontrado no pedido.")
+        del self.itens[codigo]
