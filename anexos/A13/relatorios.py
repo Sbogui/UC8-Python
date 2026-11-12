@@ -3,23 +3,24 @@ from pathlib import Path
 import csv
 import os
 import tempfile
-    """TODO A13: implemente exportar_csv conforme o contrato e reutilize seu código anterior."""
+
 
 CABECALHO = ["id", "nome", "quantidade", "preco_centavos", "subtotal_centavos", "forma", "total_pedido_reais"]
+
 
 def exportar_csv(caminho, comprovante):
     if comprovante is None:
         raise ValueError("Finalize o pedido antes de exportar o relatório.")
     if len(comprovante["itens"]) == 0:
         raise ValueError("O comprovante não tem itens para exportar.")
-    
+
     total = comprovante["total_centavos"]
-    total_texto = f"{total // 100},{total % 100:02d}"
-    
+    total_texto = f"{total // 100},{total % 100:02d}"  
+
     caminho = Path(caminho)
     temporario = None
     try:
-        identificador, temporario = temfile.mkstemp(dir=caminho.parent, suffix=".tmp")
+        identificador, temporario = tempfile.mkstemp(dir=caminho.parent, suffix=".tmp")
         with os.fdopen(identificador, "w", encoding="utf-8-sig", newline="") as arquivo:
             escritor = csv.writer(arquivo, delimiter=";")
             escritor.writerow(CABECALHO)
@@ -30,4 +31,4 @@ def exportar_csv(caminho, comprovante):
     except OSError:
         if temporario is not None and os.path.exists(temporario):
             os.remove(temporario)
-        raise ValueError("Não for possível exportar. O relatório anterior foi mantido.")
+        raise ValueError("Não foi possível exportar. O relatório anterior foi mantido.")

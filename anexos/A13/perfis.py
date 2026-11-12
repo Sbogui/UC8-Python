@@ -1,24 +1,19 @@
-# A13: assinaturas de apoio; traga sua implementação anterior.
-
-"""Simulação local de identificação/perfil; não autentica usuários reais."""
-"""TODO A13: implemente __init__ conforme o contrato e reutilize seu código anterior."""
-"""TODO A13: implemente entrar conforme o contrato e reutilize seu código anterior."""
-"""TODO A13: implemente pode_configurar conforme o contrato e reutilize seu código anterior."""
-"""TODO A13: implemente sair conforme o contrato e reutilize seu código anterior."""
+# A13: simulação de perfis (só demonstração).
 PERFIS = ["Caixa", "Administração"]
 
+
 class SessaoDemo:
-    
+    """Simulação local de identificação/perfil; não autentica usuários reais."""
 
     def __init__(self):
         self.nome = None
-        self.perfil = None        
+        self.perfil = None
 
     def entrar(self, nome, perfil):
-        if nome.strip() = "":
+        if nome.strip() == "":
             raise ValueError("Informe um nome fictício.")
         if perfil not in PERFIS:
-            raise ValueError("Escolha o pergil Caixa ou Administração.")
+            raise ValueError("Escolha o perfil Caixa ou Administração.")
         self.nome = nome.strip()
         self.perfil = perfil
 
