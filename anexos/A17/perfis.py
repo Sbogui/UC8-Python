@@ -1,19 +1,24 @@
 # A17: assinaturas de apoio; traga sua implementação anterior.
+PERFIS = ["Caixa", "Administração"]
+
 class SessaoDemo:
     """Simulação local de identificação/perfil; não autentica usuários reais."""
 
     def __init__(self):
-        """TODO A17: implemente __init__ conforme o contrato e reutilize seu código anterior."""
-        raise NotImplementedError('Implemente e teste esta operação.')
+        self.nome = None
+        self.perfil = None
 
     def entrar(self, nome, perfil):
-        """TODO A17: implemente entrar conforme o contrato e reutilize seu código anterior."""
-        raise NotImplementedError('Implemente e teste esta operação.')
+        if nome.strip() == "":
+            raise ValueError("Informe um nome fictício.")
+        if perfil not in PERFIS:
+            raise ValueError("Escolha o perfil Caixa ou Administração.")
+        self.nome = nome.strip()
+        self.perfil = perfil
 
     def pode_configurar(self):
-        """TODO A17: implemente pode_configurar conforme o contrato e reutilize seu código anterior."""
-        raise NotImplementedError('Implemente e teste esta operação.')
+        return self.perfil == "Administração"
 
     def sair(self):
-        """TODO A17: implemente sair conforme o contrato e reutilize seu código anterior."""
-        raise NotImplementedError('Implemente e teste esta operação.')
+        self.nome = None
+        self.perfil = None
