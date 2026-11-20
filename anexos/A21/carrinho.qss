@@ -1,0 +1,20 @@
+QWidget#carrinho { background: #f3f6fb; color: #17213a; }
+QLabel { color: #17213a; }
+QLabel#titulo { color: #17213a; font-size: 25px; font-weight: bold; }
+QLabel#apoio { color: #3c4c68; }
+QTableWidget, QLineEdit {
+    background: white; color: #17213a; border: 1px solid #a4b1c8;
+    border-radius: 5px; selection-background-color: #1d4ed8; selection-color: white;
+}
+QHeaderView::section { background: #e8eef9; color: #17213a; padding: 8px; }
+QWidget#edicao { background: white; border: 1px solid #c8d3e4; border-radius: 8px; }
+QLabel#retorno { color: #374760; }
+QLabel#retorno[erro="true"] { color: #9e2031; font-weight: bold; }
+QLabel#total { color: #173b79; font-size: 22px; font-weight: bold; }
+QPushButton {
+    color: white; background: #1d4ed8; padding: 7px 15px;
+    border: 2px solid transparent; border-radius: 6px;
+}
+QPushButton:hover { background: #1e40af; }
+QPushButton:focus { border-color: #a7c7ff; }
+QLineEdit:focus, QTableWidget:focus { border: 2px solid #1d4ed8; }

@@ -33,26 +33,25 @@ python main.py
 ```
 **Banco:** `sorveteria_a18.db`, criado ao lado do `main.py` na primeira execução (começa vazio).
 
-**Ensaio sem tocar no banco principal:** passe outro caminho.
-```
-python main.py ensaio.db
-```
-**Começar do zero:** feche a janela e apague `sorveteria_a18.db` (ou use outro nome, como acima).
+**Ensaio sem tocar no banco principal:** copie a pasta inteira para outro lugar e rode `python main.py` lá. Cada pasta cria o seu próprio `sorveteria_a18.db`, começando vazio.
+
+**Começar do zero:** feche a janela e apague `sorveteria_a18.db`.
 
 ### Primeiro uso (dados fictícios)
-1. Aba **Cadastros** > clique em **Entrar (simulação)** com perfil *Administração* (sem isso os botões ficam desativados).
-2. Cadastre um produto: nome `Taça Grande`, preço `35,00`, **Salvar**. Depois `Água`, `6,00`.
-3. Cadastre um cliente: `Ana`.
-4. Aba **Venda**: escolha cliente e produto, quantidade `1`, **Adicionar**. Repita com `Água` e quantidade `2`.
-5. Total esperado: **R$ 47,00**. Com PIX, a confirmação mostra **R$ 40.89**; com Débito, **R$ 43.24**.
-6. **Finalizar** > confirmar. A mensagem diz o número da venda. Depois **Exportar CSV**.
+1. Aba **Produtos**: nome `Taça Grande`, preço `35,00`, **Salvar produto**. Depois `Água`, `6,00`.
+2. Aba **Clientes**: nome `Ana`, **Salvar cliente**.
+3. Aba **Pedido**: clique em **Atualizar catálogo e clientes**, escolha o cliente e o produto, quantidade `1`, **Adicionar**. Repita com `Água` e quantidade `2`.
+4. Total esperado: **R$ 47,00**. Escolha a forma de pagamento e clique em **Finalizar pedido**: com PIX a prévia mostra **R$ 40,89**; com Débito, **R$ 43,24**.
+5. **Confirmar**. A mensagem diz o número da venda. Depois **Exportar CSV**.
+
+A aba **Exercício JSON** só abre depois de **Entrar** na aba *Perfil (simulação)* com o perfil *Administração*. Os cadastros de produtos e clientes não precisam disso.
 
 ## Verificação
 Rode **sem** `-O` (a opção `-O` desliga os `assert`; o script avisa e para):
 ```
 python verificar.py
 ```
-Resultado esperado: sete linhas `OK`, a linha de isolamento e, no fim, `Casos executados: previsões e resultados conferem.`
+Resultado esperado: uma única linha, `Casos executados: previsões e resultados conferem.` Se algum `assert` falhar, o Python mostra o erro e a linha do arquivo.
 Os testes usam pasta temporária e **não criam nem alteram** `sorveteria_a18.db`.
 
 O que cada caso confere:

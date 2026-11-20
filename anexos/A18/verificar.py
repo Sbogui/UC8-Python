@@ -66,7 +66,8 @@ def verificar():
     with tempfile.TemporaryDirectory() as pasta:
         caminho = os.path.join(pasta, "ensaio.db")
         repo = RepositorioSqlite(caminho)
-        repo.iniciar_vendas()
+        repo.iniciar()          # produtos e clientes
+        repo.iniciar_vendas()   # vendas e itens
         repo.adicionar_cliente("Maria D'Ávila")
         repo.adicionar_produto("Sorvete", 650)
         repo.adicionar_produto("Picolé d'água", 500)

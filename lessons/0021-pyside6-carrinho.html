@@ -1,0 +1,165 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>A21 · A21 Extra — Carrinho de vendas com PySide6</title><script src="../assets/appearance.js"></script><link rel="stylesheet" href="../assets/course.css"><link rel="stylesheet" href="../assets/atelier.css"><link rel="stylesheet" href="../assets/theme.css"><link rel="stylesheet" href="../assets/appearance.css"></head><body class="lesson" data-lesson="A21" data-course="uc8-desktop"><a class="skip" href="#conteudo">Pular para conteúdo</a><div class="curso-app"><aside id="course-sidebar" class="course-sidebar curso-lateral"><p class="eyebrow">UC8 · Python · Tkinter e ttk</p><h2>Grade das aulas</h2><p>20 encontros · 60 h</p><button id="grade-close" class="js-only">Ocultar grade · P</button><ol class="grade-list"><li class="grade-item "><span class="grade-number">A01</span><a href="0001-diagnostico-cadastro.html"><span>Diagnóstico, revisão Python e cadastro simples<small>Disponível</small></span></a></li><li class="grade-item "><span class="grade-number">A02</span><a href="0002-evolucao-cadastro.html"><span>Evolução do cadastro<small>Disponível</small></span></a></li><li class="grade-item "><span class="grade-number">A03</span><a href="0003-conversor.html"><span>Conversor de moedas<small>Disponível</small></span></a></li><li class="grade-item "><span class="grade-number">A04</span><a href="0004-escolar-basico.html"><span>Sistema escolar básico<small>Disponível</small></span></a></li><li class="grade-item "><span class="grade-number">A05</span><a href="0005-escolar-ampliado.html"><span>Sistema escolar ampliado<small>Disponível</small></span></a></li><li class="grade-item "><span class="grade-number">A06</span><a href="0006-escolar-modular.html"><span>Sistema escolar modular — classes<small>Disponível</small></span></a></li><li class="grade-item "><span class="grade-number">A07</span><a href="0007-sorveteria-inicial.html"><span>Sorveteria inicial<small>Disponível</small></span></a></li><li class="grade-item "><span class="grade-number">A08</span><a href="0008-sorveteria-pagamentos.html"><span>Sorveteria e pagamentos<small>Disponível</small></span></a></li><li class="grade-item "><span class="grade-number">A09</span><a href="0009-catalogo-carrinho.html"><span>Catálogo e carrinho<small>Disponível</small></span></a></li><li class="grade-item "><span class="grade-number">A10</span><a href="0010-pizzaria-inicial.html"><span>Pizzaria inicial — transferência<small>Disponível</small></span></a></li><li class="grade-item "><span class="grade-number">A11</span><a href="0011-pizzaria-evolucao.html"><span>Pizzaria — estados e pagamento<small>Disponível</small></span></a></li><li class="grade-item "><span class="grade-number">A12</span><a href="0012-mercado-json.html"><span>Mercado — navegação e JSON<small>Disponível</small></span></a></li><li class="grade-item "><span class="grade-number">A13</span><a href="0013-pizzaria-relatorios.html"><span>Pizzaria — CSV e demonstração de login<small>Disponível</small></span></a></li><li class="grade-item "><span class="grade-number">A14</span><a href="0014-sqlite.html"><span>SQLite — primeira persistência<small>Disponível</small></span></a></li><li class="grade-item "><span class="grade-number">A15</span><a href="0015-crud.html"><span>CRUD — produtos e clientes<small>Disponível</small></span></a></li><li class="grade-item "><span class="grade-number">A16</span><a href="0016-controllers.html"><span>Controllers, componentes e contratos<small>Disponível</small></span></a></li><li class="grade-item "><span class="grade-number">A17</span><a href="0017-integracao.html"><span>Integração e CustomTkinter<small>Disponível</small></span></a></li><li class="grade-item "><span class="grade-number">A18</span><a href="0018-revisao-testes.html"><span>Revisão, testes e README<small>Disponível</small></span></a></li><li class="grade-item "><span class="grade-number">A19</span><a href="0019-academia-demonstracoes.html"><span>Academia e demonstrações individuais<small>Disponível</small></span></a></li><li class="grade-item "><span class="grade-number">A20</span><a href="0020-relacionamentos-recuperacao.html"><span>Relacionamentos, recuperação e encerramento<small>Disponível</small></span></a></li><li class="grade-item current"><span class="grade-number">A21</span><span>Extra · Carrinho de vendas com PySide6<small>Nesta aula</small></span><ol class="grade-sections"><li><a href="#partida">Retome o contrato do carrinho</a></li><li><a href="#esteira">Monte o primeiro fluxo com Qt Widgets</a></li><li><a href="#pratica-terminal">Experimente a conexão do botão</a></li><li><a href="#janela">Leia a tela de cima para baixo</a></li><li><a href="#pratica-formulario">Implemente a edição no carrinho</a></li><li><a href="#auditoria">Compare os casos com outra dupla</a></li><li><a href="#registro">Registre a execução</a></li><li><a href="#fechamento">Explique a mudança</a></li><li><a href="#em-casa">Continue em casa</a></li></ol></li></ol></aside><div class="curso-conteudo"><button id="grade-toggle" class="grade-toggle js-only" aria-controls="course-sidebar">Grade · P</button><header class="top"><div class="wordmark">UC8</div><span class="badge" data-idoc="status">Aula 21 · Extra</span><button type="button" id="theme-toggle" class="theme-control" aria-label="Ativar tema escuro" title="Ativar tema escuro"><svg class="theme-icon-sun" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg><svg class="theme-icon-moon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M20.5 13.3A8.5 8.5 0 0 1 10.7 3.5 8.5 8.5 0 1 0 20.5 13.3Z"/></svg></button></header><div class="hero"><div class="eyebrow">Python · PySide6 e Qt Widgets</div><h1>A21 Extra — Carrinho de vendas com PySide6</h1><p class="thesis">Construa uma interface Qt Widgets para o carrinho da UC8. Reaproveite o modelo do pedido e pratique layout, eventos, mensagens e uso por teclado.</p><p data-idoc="caveat">Encontro complementar de 180 minutos. Trabalhe em uma cópia do projeto encerrado na A20, usando dados fictícios e o carrinho em memória.</p><div class="meta"><span>Aluno</span></div></div><main id="conteudo"><nav class="lesson-navigation" aria-label="Navegação entre aulas"><a href="0020-relacionamentos-recuperacao.html" rel="prev"><strong>← Aula anterior</strong><span>A20 · Relacionamentos, recuperação e encerramento</span></a></nav><div class="actions js-only"><button id="presentation" aria-pressed="false">Ampliar para apresentação</button><button data-export>Exportar registros da aula</button><a href="#registro">Identificação e registros</a></div><h2>Objetivos</h2><ul><li>Montar uma janela com tabela, edição e total usando layouts do Qt.</li><li>Conectar um evento à regra existente e comunicar sucesso ou erro na interface.</li><li>Verificar edição válida, inválida e sem seleção pelo teclado.</li></ul><h2>Antes de começar</h2><ul><li>Use Python 3.10 ou posterior com PySide6 instalado no ambiente virtual. Confira se o pacote tem distribuição para o interpretador do laboratório.</li><li>Traga o modelos.py funcional do carrinho da A18 ou da sua versão final. O exemplo espera Pedido, Produto e formatar. Use a seção de preparação para obter os outros arquivos.</li></ul><details id="preclass-theory" class="preclass-theory"><summary>Antes da aula — Teoria</summary><h3>Conceito</h3><p>Qt Widgets organiza controles por layout. Um sinal descreve um evento e pode ser ligado a uma função para produzir um efeito na tela.</p><h3>Exemplo mínimo comentado</h3><p>Uma janela que responde a um botão</p><pre tabindex="0" aria-label="Código do exemplo de teoria"><code>from PySide6.QtWidgets import QApplication, QLabel, QPushButton, QVBoxLayout, QWidget
+
+app = QApplication([])
+janela = QWidget()
+janela.setWindowTitle(&quot;Ensaio de sinais&quot;)
+layout = QVBoxLayout(janela)
+mensagem = QLabel(&quot;Aguardando o clique&quot;)
+botao = QPushButton(&quot;Testar sinal&quot;)
+layout.addWidget(mensagem)
+layout.addWidget(botao)
+# Passe a função ao connect para o Qt chamá-la no clique.
+botao.clicked.connect(lambda: mensagem.setText(&quot;Clique recebido&quot;))
+janela.show()
+app.exec()
+</code></pre><p>Execute ensaio_sinais.py em uma máquina com PySide6 e uma sessão gráfica.</p><div class="theory-result"><strong>Resultado esperado do ensaio</strong><pre>A janela abre com Aguardando o clique. Ao acionar Testar sinal, o rótulo muda para Clique recebido.</pre></div><h3>Três erros comuns</h3><ol><li>Executar com um Python diferente do ambiente em que PySide6 foi instalado.</li><li>Chamar a função no momento de conectar em vez de passar a função.</li><li>Associar o produto à posição visual da linha.</li></ol><h3>Checklist de saída da teoria</h3><ul class="theory-checklist"><li><label><input type="checkbox" class="theory-check" autocomplete="off"> <span>Sei indicar onde o sinal é ligado à função.</span></label></li><li><label><input type="checkbox" class="theory-check" autocomplete="off"> <span>Sei executar o ensaio e verificar seu resultado.</span></label></li><li><label><input type="checkbox" class="theory-check" autocomplete="off"> <span>Sei explicar por que um ID estável acompanha o produto.</span></label></li></ul><p>Marque o que consegue explicar e registre respostas ou dúvidas em Registros da prática. A exportação inclui as marcações; elas não atribuem nota automaticamente.</p><h3>Experimente e explique</h3><ol><li>Troque a mensagem do clique, preveja o próximo texto e execute com Tab e Espaço.</li></ol></details><section id="partida" data-stop="partida"><h2>Retome o contrato do carrinho <a class="section-source" href="leitura-0021-pyside6-carrinho.html#partida" aria-label="Versão para leitura: Retome o contrato do carrinho">↗</a></h2><p>Use o cenário da A18. Dois picolés de fruta custam R$ 5,00 cada e três picolés de leite custam R$ 7,50 cada. O total de partida é R$ 32,50. Registre sua hipótese antes de executar.</p><ul><li>O que acontece com a linha, o total e o foco ao informar zero para a quantidade de fruta?</li><li>Que operação do projeto decide se uma quantidade pode ser aceita?</li><li>O que identifica um produto quando a posição da linha muda?</li></ul></section><section id="esteira" data-stop="esteira"><h2>Monte o primeiro fluxo com Qt Widgets <a class="section-source" href="leitura-0021-pyside6-carrinho.html#esteira" aria-label="Versão para leitura: Monte o primeiro fluxo com Qt Widgets">↗</a></h2><div class="learning-path"><h3>1. Problema concreto</h3><p>Como fazer um botão disparar uma ação em uma interface controlada por eventos?</p><h3>2. Entenda a ideia</h3><p>PySide6 liga Python ao Qt 6. QApplication controla a aplicação. Um widget representa uma parte da tela. O layout distribui os componentes quando a janela muda de tamanho.</p><p>O sinal clicked é emitido quando o botão é acionado. connect liga o sinal a uma função. No carrinho, a janela lê o campo e a seleção, o modelo aplica a regra e a janela comunica o resultado.</p><h3>3. Exemplo comentado</h3><details class="public-example"><summary>Preparação no PowerShell</summary><pre tabindex="0" aria-label="Código do exemplo: Preparação no PowerShell"><code>py -m venv .venv
+.\.venv\Scripts\python.exe -m pip install PySide6
+.\.venv\Scripts\python.exe -c &quot;import PySide6; print(PySide6.__version__)&quot;
+.\.venv\Scripts\python.exe ensaio_sinais.py
+</code></pre><p>Execute os comandos na pasta da A21. O último comando abre a janela do anexo ensaio_sinais.py.</p></details><h3>4. Experimente uma mudança</h3><ol class="pipeline"><li><strong>Prepare o ambiente</strong><p>Crie um ambiente virtual com PowerShell e confira o import do PySide6.</p></li><li><strong>Abra uma janela</strong><p>Execute ensaio_sinais.py e identifique onde janela, layout e botão são criados.</p></li><li><strong>Preveja e conecte</strong><p>Registre o que acontece ao ligar o sinal a uma função. Acione o botão por clique e teclado.</p></li><li><strong>Compare com o projeto</strong><p>Localize o callback da interface anterior e veja onde os dois fluxos chamam a regra.</p></li></ol><h3>5. Seu desafio individual</h3><aside class="exercise-briefing" aria-label="Preparação para o desafio"><h4>Antes de começar o desafio</h4><dl><div><dt>QVBoxLayout</dt><dd>Empilha os componentes da janela verticalmente.</dd></div><div><dt>Sinal e ação</dt><dd>clicked indica que houve acionamento e connect registra a função a chamar.</dd></div></dl><p>Antes de alterar o ensaio, identifique o emissor do sinal, a função conectada e o texto inicial.</p><p><strong>Arquivos desta prática:</strong> <a href="#a21-sinais">ensaio_sinais.py</a></p></aside><p>Dê ao usuário duas ações no ensaio. Uma mostra a mensagem e a outra restaura o estado inicial.</p><a class="challenge-link" href="#pratica-terminal">Ir para o desafio e suas pistas</a></div></section><section id="pratica-terminal" data-stop="pratica-terminal"><h2>Experimente a conexão do botão <a class="section-source" href="leitura-0021-pyside6-carrinho.html#pratica-terminal" aria-label="Versão para leitura: Experimente a conexão do botão">↗</a></h2><div class="workbench" id="a21-sinais"><h3>Ensaio · ligue um botão a uma ação</h3><p>Execute o ensaio. Troque a função anônima por uma função nomeada e acrescente um segundo botão para voltar ao texto inicial. Preveja o efeito antes de clicar.</p><ol class="work-steps"><li>Crie uma função que altera o texto com setText.</li><li>Crie o segundo QPushButton, adicione-o ao layout e conecte seu sinal.</li><li>Teste com Tab e Espaço. Compare com o comportamento previsto.</li></ol><p>Concluído quando: O texto inicial aparece na abertura, muda ao ativar o primeiro botão e volta ao inicial ao ativar o segundo. Os dois botões respondem por teclado.</p><div class="activity-hints"><details><summary>Pista 1 — Por onde começar</summary><p>Que componente precisa mudar ao clicar?</p></details><details><summary>Pista 2 — O que observar</summary><p>Que método de QLabel troca o texto?</p></details><details><summary>Pista 3 — Como investigar</summary><p>O que muda entre passar mostrar_mensagem e escrever mostrar_mensagem()?</p></details></div><pre><code id="work-a21-sinais">from PySide6.QtWidgets import QApplication, QLabel, QPushButton, QVBoxLayout, QWidget
+
+app = QApplication([])
+janela = QWidget()
+janela.setWindowTitle(&quot;Ensaio de sinais&quot;)
+layout = QVBoxLayout(janela)
+mensagem = QLabel(&quot;Aguardando o clique&quot;)
+botao = QPushButton(&quot;Testar sinal&quot;)
+layout.addWidget(mensagem)
+layout.addWidget(botao)
+# Passe a função ao connect para o Qt chamá-la no clique.
+botao.clicked.connect(lambda: mensagem.setText(&quot;Clique recebido&quot;))
+janela.show()
+app.exec()
+</code></pre><div class="atelier" data-source="work-a21-sinais" data-filename="ensaio_sinais.py" data-execution="Execute com o Python do ambiente virtual. No PowerShell, use .\.venv\Scripts\python.exe ensaio_sinais.py."></div><p>Execute com o Python do ambiente virtual. No PowerShell, use .\.venv\Scripts\python.exe ensaio_sinais.py.</p></div></section><section id="janela" data-stop="janela"><h2>Leia a tela de cima para baixo <a class="section-source" href="leitura-0021-pyside6-carrinho.html#janela" aria-label="Versão para leitura: Leia a tela de cima para baixo">↗</a></h2><p>No topo, dê nome à função da janela. No centro, exiba Produto, Qtd., Preço unitário e Subtotal. Abaixo, coloque o campo Nova quantidade, o botão Atualizar quantidade e uma mensagem. Identifique o Total do carrinho no rodapé.</p><p>Use um layout vertical para os blocos e um horizontal para o campo e o botão. A tabela é somente para consulta. Cada produto carrega o seu ID e o campo envia a quantidade como texto ao método atualizar.</p><p>QSS define aparência. Experimente mudar o espaçamento ou o destaque do total. Em seguida, redimensione a janela e teste foco por Tab e ativação pelo teclado.</p><details class="public-example"><summary>Destaque de foco em QSS</summary><pre tabindex="0" aria-label="Código do exemplo: Destaque de foco em QSS"><code>QPushButton { border: 2px solid transparent; }
+QPushButton:focus { border-color: #a7c7ff; }
+</code></pre><p>Localize as regras de QPushButton em carrinho.qss e preveja o efeito da borda de foco.</p></details></section><section id="pratica-formulario" data-stop="pratica-formulario"><h2>Implemente a edição no carrinho <a class="section-source" href="leitura-0021-pyside6-carrinho.html#pratica-formulario" aria-label="Versão para leitura: Implemente a edição no carrinho">↗</a></h2><div class="workbench" id="a21-carrinho"><h3>Desafio · edite o carrinho com PySide6</h3><p>Coloque o arquivo inicial, carrinho.qss e seu modelos.py funcional na mesma pasta. Implemente atualizar_quantidade. A tabela e o total devem refletir a regra já desenvolvida no projeto.</p><ol class="work-steps"><li>Abra o inicial e compare o total exibido com o cálculo da retomada. Verifique tabela, ordem do foco e redimensionamento.</li><li>Localize selectionModel().selectedRows() e recupere o ID da linha selecionada.</li><li>Passe o ID e o texto do campo para Pedido.atualizar. Use a mensagem do domínio quando uma edição for recusada e deixe o campo pronto para correção.</li><li>Atualize a tabela e o total depois de uma edição aceita. Em carrinho.qss, ajuste contraste, espaçamento ou destaque do total e confira o foco com Tab.</li></ol><p>Concluído quando: A edição válida atualiza a linha e o total. Uma entrada inválida preserva o estado e exibe orientação junto ao campo. Sem seleção, oriente a seleção. Verifique o fluxo pelo teclado.</p><div class="activity-hints"><details><summary>Pista 1 — Por onde começar</summary><p>Como descobrir se alguma linha está selecionada?</p></details><details><summary>Pista 2 — O que observar</summary><p>Qual valor guardado em UserRole permanece correto mesmo se a linha mudar de posição?</p></details><details><summary>Pista 3 — Como investigar</summary><p>Em qual caminho o código deve chamar renderizar? De onde vem a mensagem quando Pedido.atualizar levanta ValueError?</p></details></div><pre><code id="work-a21-carrinho">from pathlib import Path
+
+from PySide6.QtCore import Qt
+from PySide6.QtWidgets import (
+    QAbstractItemView, QApplication, QHeaderView, QHBoxLayout, QLabel,
+    QLineEdit, QPushButton, QTableWidget, QTableWidgetItem, QVBoxLayout, QWidget,
+)
+
+from modelos import Pedido, Produto, formatar
+
+
+def moeda(centavos):
+    return f&quot;R$ {formatar(centavos)}&quot;
+
+
+def pedido_de_ensaio():
+    pedido = Pedido()
+    pedido.adicionar(Produto(1, &quot;Picolé de fruta&quot;, 500), &quot;2&quot;)
+    pedido.adicionar(Produto(2, &quot;Picolé de leite&quot;, 750), &quot;3&quot;)
+    return pedido
+
+
+class JanelaCarrinho(QWidget):
+    def __init__(self, pedido):
+        super().__init__()
+        self.pedido = pedido
+        self.setObjectName(&quot;carrinho&quot;)
+        self.setWindowTitle(&quot;Carrinho de vendas&quot;)
+        self.resize(740, 480)
+
+        layout = QVBoxLayout(self)
+        layout.setContentsMargins(24, 24, 24, 24)
+        layout.setSpacing(14)
+
+        titulo = QLabel(&quot;Carrinho de vendas&quot;)
+        titulo.setObjectName(&quot;titulo&quot;)
+        apoio = QLabel(&quot;Selecione um produto para editar sua quantidade.&quot;)
+        apoio.setObjectName(&quot;apoio&quot;)
+        layout.addWidget(titulo)
+        layout.addWidget(apoio)
+
+        self.tabela = QTableWidget(0, 4)
+        self.tabela.setAccessibleName(&quot;Itens do carrinho&quot;)
+        self.tabela.setHorizontalHeaderLabels(
+            [&quot;Produto&quot;, &quot;Qtd.&quot;, &quot;Preço unitário&quot;, &quot;Subtotal&quot;]
+        )
+        self.tabela.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
+        self.tabela.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
+        self.tabela.setSelectionMode(QAbstractItemView.SelectionMode.SingleSelection)
+        self.tabela.verticalHeader().hide()
+        cabecalho = self.tabela.horizontalHeader()
+        cabecalho.setSectionResizeMode(QHeaderView.ResizeMode.ResizeToContents)
+        cabecalho.setSectionResizeMode(0, QHeaderView.ResizeMode.Stretch)
+        layout.addWidget(self.tabela, 1)
+
+        painel = QWidget()
+        painel.setObjectName(&quot;edicao&quot;)
+        edicao = QVBoxLayout(painel)
+        edicao.setContentsMargins(14, 12, 14, 12)
+        linha = QHBoxLayout()
+        rotulo = QLabel(&quot;&amp;Nova quantidade&quot;)
+        self.campo = QLineEdit()
+        self.campo.setAccessibleName(&quot;Nova quantidade&quot;)
+        self.campo.setMaxLength(12)
+        rotulo.setBuddy(self.campo)
+        self.botao = QPushButton(&quot;&amp;Atualizar quantidade&quot;)
+        linha.addWidget(rotulo)
+        linha.addWidget(self.campo, 1)
+        linha.addWidget(self.botao)
+        edicao.addLayout(linha)
+
+        self.retorno = QLabel(&quot;Selecione uma linha para começar.&quot;)
+        self.retorno.setObjectName(&quot;retorno&quot;)
+        self.retorno.setWordWrap(True)
+        edicao.addWidget(self.retorno)
+        layout.addWidget(painel)
+
+        self.total = QLabel()
+        self.total.setObjectName(&quot;total&quot;)
+        self.total.setAlignment(Qt.AlignmentFlag.AlignRight)
+        layout.addWidget(self.total)
+
+        self.setTabOrder(self.tabela, self.campo)
+        self.setTabOrder(self.campo, self.botao)
+        self.botao.clicked.connect(self.atualizar_quantidade)
+        self.campo.returnPressed.connect(self.atualizar_quantidade)
+        self.renderizar()
+
+    def renderizar(self):
+        linhas = self.pedido.linhas()
+        self.tabela.setRowCount(len(linhas))
+        for indice, linha in enumerate(linhas):
+            valores = (
+                linha[&quot;nome&quot;],
+                str(linha[&quot;quantidade&quot;]),
+                moeda(linha[&quot;preco_centavos&quot;]),
+                moeda(linha[&quot;subtotal_centavos&quot;]),
+            )
+            for coluna, valor in enumerate(valores):
+                celula = QTableWidgetItem(valor)
+                if coluna == 0:
+                    celula.setData(Qt.ItemDataRole.UserRole, linha[&quot;produto_id&quot;])
+                else:
+                    celula.setTextAlignment(
+                        Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter
+                    )
+                self.tabela.setItem(indice, coluna, celula)
+        self.total.setText(f&quot;Total do carrinho · {moeda(self.pedido.total_centavos())}&quot;)
+
+    def mostrar_retorno(self, mensagem, erro=False):
+        self.retorno.setProperty(&quot;erro&quot;, erro)
+        self.retorno.setText(mensagem)
+        estilo = self.retorno.style()
+        estilo.unpolish(self.retorno)
+        estilo.polish(self.retorno)
+
+    def atualizar_quantidade(self):
+        # Leia a seleção atual e recupere o ID guardado em UserRole.
+        # Envie o texto do campo para a regra de edição em Pedido.
+        # Mostre o retorno, atualize a tela se aceita e trate o foco.
+        self.mostrar_retorno(&quot;Evento recebido. Implemente a edição neste método.&quot;)
+
+
+if __name__ == &quot;__main__&quot;:
+    app = QApplication([])
+    tema = Path(__file__).with_name(&quot;carrinho.qss&quot;)
+    app.setStyleSheet(tema.read_text(encoding=&quot;utf-8&quot;))
+    janela = JanelaCarrinho(pedido_de_ensaio())
+    janela.show()
+    app.exec()
+</code></pre><div class="atelier" data-source="work-a21-carrinho" data-filename="carrinho_qt.py" data-execution="Abra o PowerShell na pasta do exercício e use .\.venv\Scripts\python.exe carrinho_qt.py. Se o nome do seu módulo for diferente, ajuste o import ou use os arquivos funcionais da referência A18 fornecidos em aula."></div><p>Abra o PowerShell na pasta do exercício e use .\.venv\Scripts\python.exe carrinho_qt.py. Se o nome do seu módulo for diferente, ajuste o import ou use os arquivos funcionais da referência A18 fornecidos em aula.</p></div></section><section id="auditoria" data-stop="auditoria"><h2>Compare os casos com outra dupla <a class="section-source" href="leitura-0021-pyside6-carrinho.html#auditoria" aria-label="Versão para leitura: Compare os casos com outra dupla">↗</a></h2><p>Reabra a janela a cada caso para partir de duas unidades de fruta e três de leite. Antes de executar, anote o que espera ver no total, na linha e no foco.</p><ul><li>Selecione fruta e informe 1. O subtotal de fruta deve ser R$ 5,00 e o total deve ser R$ 27,50.</li><li>Selecione fruta e informe 0 ou abc em execuções separadas. Confira orientação junto ao campo, foco para corrigir, duas unidades preservadas e total ainda em R$ 32,50.</li><li>Acione Atualizar quantidade sem seleção. A interface deve orientar a selecionar um item sem alterar o carrinho.</li><li>Faça uma edição por teclado, usando Tab, setas para selecionar a linha e Enter no campo. Redimensione a janela e confira se a tabela e o total continuam legíveis.</li></ul><div id="audit-list"><article class="audit-item" id="a21-revisao-id"><fieldset data-question="a21-revisao-id"><legend>Qual informação a janela deve enviar ao método de edição para identificar o item?</legend><div class="question-options"><label class="option"><input type="radio" name="a21-revisao-id" value="O ID do produto guardado na célula." autocomplete="off">O ID do produto guardado na célula.</label><label class="option"><input type="radio" name="a21-revisao-id" value="O número visual da linha." autocomplete="off">O número visual da linha.</label><label class="option"><input type="radio" name="a21-revisao-id" value="O texto do subtotal." autocomplete="off">O texto do subtotal.</label></div><p class="selected-text" aria-live="polite"></p><details class="reasoning-hint"><summary>Dica para raciocinar</summary><p>Imagine a tabela reorganizada e confira qual valor continua identificando o produto.</p></details></fieldset><label><input class="discussion" type="checkbox" value="a21-revisao-id"> Marcar para discussão</label></article></div><p id="count" aria-live="polite">0 itens marcados para discussão</p><button class="js-only" id="register">Registrar discussão</button><p id="registered" aria-live="polite"></p></section><section id="registro" data-stop="registro"><h2>Registre a execução <a class="section-source" href="leitura-0021-pyside6-carrinho.html#registro" aria-label="Versão para leitura: Registre a execução">↗</a></h2><p>Salve carrinho_qt.py e carrinho.qss. Registre a versão do Python e do PySide6, o comando usado e os resultados dos três fluxos: edição válida, inválida e sem seleção. Anote a correção que aplicou depois do teste do colega.</p><div class="grid"><label>Nome do aluno<input id="student-name" autocomplete="off"></label><label>Turma<input id="student-class" autocomplete="off"></label><label>Data<input id="lesson-date" type="date"></label></div><label for="practice-notes">Registros da prática</label><textarea id="practice-notes" autocomplete="off"></textarea><label for="reflection">Reflexão e próximo passo</label><textarea id="reflection" autocomplete="off"></textarea><div class="actions js-only"><button id="export" data-export>Exportar registros da aula</button><button id="reset">Limpar sessão</button></div><p id="export-status" aria-live="polite"></p><p>Envie os arquivos pelo canal de entrega indicado no <a href="../index.html">índice do curso</a>.</p></section><section id="fechamento" data-stop="fechamento"><h2>Explique a mudança <a class="section-source" href="leitura-0021-pyside6-carrinho.html#fechamento" aria-label="Versão para leitura: Explique a mudança">↗</a></h2><ul><li>Onde o clique é ligado à ação?</li><li>Onde a regra de quantidade é aplicada?</li><li>Como o usuário percebe que precisa corrigir a entrada?</li></ul></section><section id="em-casa" data-stop="em-casa"><h2>Continue em casa <a class="section-source" href="leitura-0021-pyside6-carrinho.html#em-casa" aria-label="Versão para leitura: Continue em casa">↗</a></h2><p>Em uma cópia do seu projeto, escolha outra tela e desenhe como ela ficaria em Qt Widgets. Identifique seu evento principal, a regra reutilizada e um teste de teclado.</p></section><h2>Fontes e anexos</h2><ul><li><a href="https://doc.qt.io/qtforpython-6/gettingstarted.html">Qt para Python · instalação e primeiro aplicativo</a></li><li><a href="https://doc.qt.io/qtforpython-6/tutorials/basictutorial/signals_and_slots.html">Qt para Python · sinais e slots</a></li><li><a href="https://doc.qt.io/qt-6/stylesheet-syntax.html">Qt Style Sheets · sintaxe</a></li><li><a download href="../anexos/A21/ensaio_sinais.py">Ensaio de sinais</a></li><li><a download href="../anexos/A21/carrinho_qt.py">Carrinho PySide6 · código inicial</a></li><li><a download href="../anexos/A21/carrinho.qss">Estilos da janela</a></li></ul><a data-idoc="source" href="leitura-0021-pyside6-carrinho.html">Versão para leitura ou impressão</a><nav class="lesson-navigation" aria-label="Navegação entre aulas"><a href="0020-relacionamentos-recuperacao.html" rel="prev"><strong>← Aula anterior</strong><span>A20 · Relacionamentos, recuperação e encerramento</span></a></nav></main><footer><p>UC8: Desenvolver e organizar interface gráfica para aplicações desktop · atualizado em <time data-idoc="asof">2026-11-19</time></p><p data-idoc="nonbinding">Registre sua tentativa e confira a correção com o professor.</p><a href="../index.html">Voltar ao índice</a></footer></div></div><noscript><p>Sem JavaScript, leia o material e registre a tentativa no seu editor ou caderno. Exportação e editores interativos exigem JavaScript.</p></noscript><script defer src="../assets/aulas.js"></script><script defer src="../assets/shell.js"></script><script defer src="../assets/course.js"></script><script defer src="../assets/atelier.js"></script></body></html>
